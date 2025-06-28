@@ -67,8 +67,8 @@ const createEvent = async (req, res) => {
          // banner
         },
         data: {
-          click_action: `http://localhost:5173/event/description/${event._id}`,
-           icon: "http://localhost:5173/vite.svg", // ✅ replace later
+          click_action: `https://event-market-place.vercel.app/event/description/${event._id}`,
+           icon: "https://event-market-place.vercel.app/vite.svg", // ✅ replace later
           image: cloudResponse.secure_url, 
         },
         token: user.fcmToken,
@@ -190,7 +190,7 @@ const updateEvent = async (req, res) => {
            
           },
           data: {
-            click_action: `http://localhost:5173/event/description/${updatedEvent._id}`,
+            click_action: `https://event-market-place.vercel.app/event/description/${updatedEvent._id}`,
             //  icon: "http://localhost:5173/vite.svg", // ✅ replace later
              image: updatedEvent.image,
           },

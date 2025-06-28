@@ -108,7 +108,7 @@ const MovieTicketDetails = () => {
               <div className="pt-4  md:text-left">
                 <p className="text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">🔳 QR Code:</p>
                 <QRCodeCanvas
-                  value={`http://localhost:5173/ticket/${ticket._id}`}
+                  value={`https://event-market-place.vercel.app/ticket/${ticket._id}`}
                   size={100}
                   className="border p-1 bg-white rounded shadow"
                 />

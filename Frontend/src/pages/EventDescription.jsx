@@ -21,6 +21,7 @@ import { setSelectedEvent } from "@/redux/eventSlice";
 const EventDescription = () => {
   const dispatch = useDispatch();
 
+
   const params = useParams();
   const eventId = params.id;
   useGetEventById(eventId);

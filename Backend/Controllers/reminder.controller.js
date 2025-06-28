@@ -44,7 +44,7 @@ const sendEventReminders = async () => {
               body: `Don't forget to attend at ${ticket.event.time} in ${ticket.event.venue}`,
             },
             data: {
-              click_action: `https://your-app.com/event/description/${ticket.event._id}`,
+              click_action: `https://event-market-place.vercel.app/event/description/${ticket.event._id}`,
               image: ticket.event.image, // Optional
             },
             token: user.fcmToken,

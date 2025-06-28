@@ -88,7 +88,7 @@ const Mybookings = () => {
                       {/* QR Code + Scan Text */}
                       <div className="flex flex-col items-center ">
                         <QRCodeCanvas
-                          value={`http://localhost:5173/movie/ticket/${ticket?._id}`}
+                          value={`https://event-market-place.vercel.app/movie/ticket/${ticket?._id}`}
                           size={80}
                         />
                         <p className="text-xs text-gray-500 dark:text-gray-200 mt-2">
@@ -193,7 +193,7 @@ const Mybookings = () => {
                     {/* QR Code */}
                     <div className="p-4 flex flex-col items-center">
                       <QRCodeCanvas
-                        value={`http://localhost:5173/ticket/${ticket._id}`}
+                        value={`https://event-market-place.vercel.app/ticket/${ticket._id}`}
                         size={80}
                       />
                       <p className="text-xs text-gray-500 dark:text-gray-200 mt-2">Scan QR</p>

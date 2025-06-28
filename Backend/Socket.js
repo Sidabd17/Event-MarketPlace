@@ -8,7 +8,7 @@ const server = http.createServer(app);
 // Socket.IO setup with CORS for frontend access
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173"], // ✅ Your frontend port
+    origin: ["https://event-market-place.vercel.app"], // ✅ Your frontend port
     credentials: true,
     methods: ["GET", "POST"],
   },
