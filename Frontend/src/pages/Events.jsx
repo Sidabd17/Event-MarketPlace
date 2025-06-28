@@ -103,7 +103,9 @@ const Events = () => {
           {['Live', 'Upcoming', 'Past'].map((type) => {
             const now = new Date();
             const classifiedEvents = filteredEvents.filter(event => {
-              const eventDateTime = new Date(`${event.date}T${event.time}:00`);
+              const cleanedTime = event.time.split(' ')[0];
+              const eventDateTime = new Date(`${event.date}T${cleanedTime}:00`);
+              // const eventDateTime = new Date(`${event.date}T${event.time}:00`);
               const diffMin = (eventDateTime - now) / 60000;
 
               if (type === 'Live') return eventDateTime.toDateString() === now.toDateString() && Math.abs(diffMin) <= 120;
