@@ -8,7 +8,7 @@ export const connectSocket = (userId) => {
   // console.log("Connecting socket for userId:", userId);
 
   if ((!socket || socket.disconnected) && userId) {
-    socket = io("http://localhost:8000", {
+    socket = io(`${import.meta.env.VITE_API_URL}`, {
       withCredentials: true,
       query: { userId },
     });

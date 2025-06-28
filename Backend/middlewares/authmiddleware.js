@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const isAuthenticated = async(req, res , next) =>{
     try {
-        // console.log("Cookies received:", req.cookies);
+        console.log("Cookies received:", req.cookies);
         const token = req.cookies.token || req.header("Authorization")?.replace("Bearer ", "");
         // console.log("Token received:", token);
         if(!token){
