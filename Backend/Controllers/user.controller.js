@@ -111,16 +111,17 @@ const login = async(req, res)=>{
        }
 
        return res.status(200)
-           .cookie('token' ,token , {
-                maxAge:24*60*60*1000 , 
-                httpOnly:true ,
-                sameSite:'strict'
-            })
-           .json({
-            message:`welcome back ${user.name}`,
+        .cookie("token", token, {
+            maxAge: 24 * 60 * 60 * 1000, // 1 day
+            httpOnly: true,
+            secure: true,               // ✅ Important for HTTPS
+            sameSite: "None"            // ✅ Critical for cross-origin (Vercel ↔ Railway)
+        })
+        .json({
+            message: `Welcome back ${user.name}`,
             user,
-            success:true
-       })
+            success: true
+        });
 
     }catch(err){
         console.log(err);
