@@ -91,12 +91,12 @@ const CreateEvent = () => {
       if (res.data.success) {
         toast.success(res.data.message);
         navigate("/admin/dashboard");
-        console.log("Event created successfully", res.data.event);
+        // console.log("Event created successfully", res.data.event);
       }
 
     } catch (error) {
-      console.error("Error creating event:", error);
-      toast.error("Failed to create event.");
+      // console.error("Error creating event:", error);
+      toast.error(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }

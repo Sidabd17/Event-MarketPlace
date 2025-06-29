@@ -27,7 +27,7 @@ const EventDescription = () => {
   useGetEventById(eventId);
 
   const event = useSelector((store) => store.event.selectedEvent);
-  console.log(event?.attendees);
+  
 
   const [open, setOpen] = useState(false);
 

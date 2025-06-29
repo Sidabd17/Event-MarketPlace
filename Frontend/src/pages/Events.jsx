@@ -34,10 +34,9 @@ const Events = () => {
   const [filteredEvents, setFilteredEvents] = useState(allEvents);
 
   function parseEventDateTime(dateStr, timeStr) {
-    const cleanDate = dateStr.includes(",") ? dateStr.split(',')[0].trim() : dateStr;
-    const datePart = cleanDate.trim();                  // e.g., "2025-08-15"
-    const timePart = timeStr.trim().toUpperCase();      // e.g., "6:00 PM" → "6:00 PM"
-    return new Date(`${datePart} ${timePart}`);
+    const cleanDate = dateStr.trim();                     // "2025-08-15"
+    const cleanTime = timeStr.trim().toUpperCase();       // "6:00 pm" => "6:00 PM"
+    return new Date(`${cleanDate} ${cleanTime}`);
   }
 
   useEffect(() => {
@@ -109,15 +108,19 @@ const Events = () => {
 
           {['Live', 'Upcoming', 'Past'].map((type) => {
             const now = new Date();
-            const classifiedEvents = filteredEvents.filter(event => {
-              
-              const eventDateTime = parseEventDateTime(event.date, event.time);
-             
-              const diffMin = (eventDateTime - now) / 60000;
+            const nowTime = now.getTime();
+            const nowDateString = now.toDateString();
 
-              if (type === 'Live') return eventDateTime.toDateString() === now.toDateString() && Math.abs(diffMin) <= 120;
-              if (type === 'Upcoming') return eventDateTime > now;
-              if (type === 'Past') return eventDateTime < now;
+            const classifiedEvents = filteredEvents.filter(event => {
+              const eventDateTime = parseEventDateTime(event.date, event.time);
+              const eventTime = eventDateTime.getTime();
+              const diffMin = (eventTime - nowTime) / 60000;
+
+              if (type === 'Live') {
+                return eventDateTime.toDateString() === nowDateString && Math.abs(diffMin) <= 120;
+              }
+              if (type === 'Upcoming') return eventTime > nowTime;
+              if (type === 'Past') return eventTime < nowTime;
             });
 
             return (
@@ -131,7 +134,7 @@ const Events = () => {
                 {classifiedEvents?.length > 0 ? (
                   <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {classifiedEvents.map(event => (
-                      <EventCard key={event._id} event={event}  />
+                      <EventCard key={event._id} event={event} />
                     ))}
                   </div>
                 ) : (

@@ -66,7 +66,7 @@ const Home = () => {
           // console.log(data);
 
           const components = data.results[0]?.components;
-          console.log("components", components);
+          // console.log("components", components);
           dispatch(setCityDetails(components));
 
         } catch (error) {
