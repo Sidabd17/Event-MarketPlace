@@ -148,9 +148,9 @@ const Signup = () => {
         <div className="flex items-center -mt-50 mb-5 justify-center max-w-5xl mx-auto">
           <form
             onSubmit={(e)=> e.preventDefault()}
-            className="w-1/2 border border-gray-200 dark:bg-slate-700 rounded-md p-4 my-10"
+            className="w-[80%] sm:w-1/2 border border-gray-200 dark:bg-slate-700 rounded-md p-4 my-10"
           >
-            <h1 className="font-bold text-xl mb-5">Create a fresh account</h1>
+            <h1 className="font-bold text-md sm:text-lg md:text-xl mb-5">Create a fresh account</h1>
             <div className="my-2 flex flex-col gap-2">
               <Label>Full name</Label>
               <Input

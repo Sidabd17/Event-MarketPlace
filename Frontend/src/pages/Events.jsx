@@ -65,7 +65,7 @@ const Events = () => {
         className='min-h-screen pb-10'>
 
         <div className='bg-gradient-to-b from-blue-100 to-white dark:bg-none h-[50vh]' />
-        <div className="flex items-center justify-center -mt-70 pt-10 max-w-7xl mx-auto">
+        <div className="flex items-center justify-center -mt-70 pt-10 px-2 max-w-7xl mx-auto">
           {/* Search Bar */}
           <div className="flex bg-white dark:bg-zinc-800 rounded-md overflow-hidden w-full mx-4 max-w-xl shadow-lg">
             <input

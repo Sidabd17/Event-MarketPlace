@@ -153,7 +153,7 @@ const Login = () => {
         <div className="flex  items-center justify-center -mt-65 max-w-3xl mx-auto ">
           <form
             onSubmit={submitHandler}
-            className="w-1/2 border border-gray-200 dark:bg-slate-900 flex flex-col gap-2 rounded-md p-4 my-10"
+            className="w-[80%] sm:w-1/2 border border-gray-200 dark:bg-slate-900 flex flex-col gap-2 rounded-md p-4 my-10"
           >
             <h1 className="font-bold sm:text-sm md:text-lg lg:text-xl mb-5">Login to Your account</h1>
             <div className="my-2 flex flex-col gap-2">

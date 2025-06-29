@@ -74,21 +74,21 @@ const Profile = () => {
     return (
         <div className="dark:bg-[#0a1216]">
             <Navbar setNavbarHeight={setNavbarHeight} />
-            <div style={{ marginTop: `${navbarHeight - 50}px` }}>
+            <div style={{ marginTop: `${navbarHeight - 50}px` }} >
                 <div className="h-[50vh] bg-gradient-to-b from-yellow-100 to-white dark:bg-none " />
                 <motion.div
                     initial={{ opacity: 0, y: -100 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 100 }}
                     transition={{ duration: 0.3 }}
-                    className="-mt-80"
+                    className="-mt-80 px-4"
                 >
 
                     <div
                         className="max-w-4xl mx-auto bg-gradient-to-b from-cyan-100 to-white dark:bg-gradient-to-b dark:from-cyan-400 dark:to-cyan-100 shadow-lg border border-gray-200 rounded-2xl my-20 p-8">
                         <div className="flex justify-between">
                             <div className="flex items-center gap-4">
-                                <Avatar className={"h-24 w-24"}>
+                                <Avatar className={"h-16 w-16 sm:h-24 sm:w-24"}>
                                     <Popover>
                                         <PopoverTrigger>
                                             <AvatarImage src={getProfilePhoto()} alt="https://github.com/shadcn.png" />

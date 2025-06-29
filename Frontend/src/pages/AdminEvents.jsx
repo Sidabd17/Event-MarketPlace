@@ -86,7 +86,7 @@ const AdminEvents = () => {
             <input
               type="text"
               placeholder="Search by city, event name, or category"
-              className="w-full max-w-2xl px-4 py-3 bg-white placeholder:text-zinc-800 text-black dark:text-white dark:placeholder:text-zinc-700  dark:bg-gray-200 outline-none rounded-md shadow-md"
+              className="w-[90%] max-w-2xl  px-4 py-3 bg-white placeholder:text-zinc-800 text-black dark:text-white dark:placeholder:text-zinc-700  dark:bg-gray-200 outline-none rounded-md shadow-md"
               onFocus={() => setOpen(true)}
               onChange={(e) => setInput(e.target.value)}
               value={input}
@@ -98,7 +98,7 @@ const AdminEvents = () => {
               <span
                 key={name}
                 onClick={() => setActiveCategory(name === activeCategory ? "" : name)}
-                className={`px-4 py-2 rounded-full ${bg} ${text} 
+                className={`px-4 py-2 rounded-full ${bg} ${text} text-sm sm:text-base
                   ${activeCategory === name ? "ring-2 ring-zinc-700 scale-105" : ""}
                   hover:scale-105 font-medium cursor-pointer hover:opacity-90 transition`}
               >
