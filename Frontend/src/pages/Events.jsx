@@ -33,6 +33,13 @@ const Events = () => {
   const { allEvents } = useSelector((store) => store.event);
   const [filteredEvents, setFilteredEvents] = useState(allEvents);
 
+  function parseEventDateTime(dateStr, timeStr) {
+    const cleanDate = dateStr.includes(",") ? dateStr.split(',')[0].trim() : dateStr;
+    const datePart = cleanDate.trim();                  // e.g., "2025-08-15"
+    const timePart = timeStr.trim().toUpperCase();      // e.g., "6:00 PM" → "6:00 PM"
+    return new Date(`${datePart} ${timePart}`);
+  }
+
   useEffect(() => {
     if (activeCategory.trim() == "") {
       setFilteredEvents(allEvents);
@@ -103,9 +110,9 @@ const Events = () => {
           {['Live', 'Upcoming', 'Past'].map((type) => {
             const now = new Date();
             const classifiedEvents = filteredEvents.filter(event => {
-              const cleanedTime = event.time.split(' ')[0];
-              const eventDateTime = new Date(`${event.date}T${cleanedTime}:00`);
-              // const eventDateTime = new Date(`${event.date}T${event.time}:00`);
+              
+              const eventDateTime = parseEventDateTime(event.date, event.time);
+             
               const diffMin = (eventDateTime - now) / 60000;
 
               if (type === 'Live') return eventDateTime.toDateString() === now.toDateString() && Math.abs(diffMin) <= 120;

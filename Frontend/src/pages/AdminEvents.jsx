@@ -20,6 +20,12 @@ const categories = [
   { name: "Sports", bg: "bg-red-200", darkbg: "bg-red-100", text: "text-red-800" },
 ];
 
+const parseEventDateTime = (dateStr, timeStr) => {
+  const datePart = dateStr.trim(); // "2025-08-01"
+  const timePart = timeStr.trim().toUpperCase(); // "6:00 pm" => "6:00 PM"
+  return new Date(`${datePart} ${timePart}`);
+};
+
 const AdminEvents = () => {
   const [input, setInput] = useState("");
   const [activeCategory, setActiveCategory] = useState("");
@@ -27,13 +33,13 @@ const AdminEvents = () => {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const events = useSelector((state) => state.event.organizerEvents);
   const [filteredEvents, setFilteredEvents] = useState(events);
 
   const [navbarHeight, setNavbarHeight] = useState(0);
 
-  const getEventTimestamp = (event) => new Date(`${event.date}T${event.time}`).getTime();
+  const getEventTimestamp = (event) => parseEventDateTime(event.date, event.time).getTime();
   const now = Date.now();
 
   const liveEvents = filteredEvents.filter(e => {
@@ -42,6 +48,8 @@ const AdminEvents = () => {
   });
   const upcomingEvents = filteredEvents.filter(e => getEventTimestamp(e) > now);
   const pastEvents = filteredEvents.filter(e => getEventTimestamp(e) < now - 2 * 60 * 60 * 1000);
+
+  // console.log("total filtered events" , liveEvents.length + upcomingEvents.length + pastEvents.length);
 
   useEffect(() => {
     if (activeCategory.trim() === "") {
@@ -120,8 +128,7 @@ const AdminEvents = () => {
                         <div className="flex justify-center">
                           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-10 mt-4 pb-4">
                             {list.map((event) => (
-                              
-                              <AdminEventCard event={event} handleEditClick={handleEditClick} />
+                              <AdminEventCard key={event?._id} event={event} handleEditClick={handleEditClick} />
                             ))}
                           </div>
                         </div>

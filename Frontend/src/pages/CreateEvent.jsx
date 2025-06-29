@@ -45,6 +45,19 @@ const CreateEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    let time = formData?.time?.trim().toUpperCase();
+
+    // ✅ Strict time format validation
+    const timeRegex = /^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/;
+    if (time && !timeRegex.test(time)) {
+      toast.error("Invalid time format. Use hh:mm AM/PM (e.g. 05:30 PM)");
+      setLoading(false);
+      return;
+    }
+
+    formData.time = time ;
+
     if (
       !formData.title ||
       !formData.description ||
@@ -111,7 +124,7 @@ const CreateEvent = () => {
               {[
                 { label: "Title", name: "title", type: "text", placeholder: "Event title" },
                 { label: "Date", name: "date", type: "date" },
-                { label: "Time", name: "time", type: "time" },
+                { label: "Time", name: "time", type: "text", placeholder: "e.g. 5:30 PM (12-hour Format)" },
                 { label: "Location", name: "location", type: "text", placeholder: "City, Venue Area" },
                 { label: "Venue", name: "venue", type: "text", placeholder: "Auditorium / Hall name" },
                 { label: "Category", name: "category", type: "text", placeholder: "Sports/Concert/Entertainment" },
