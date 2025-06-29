@@ -27,7 +27,7 @@ const EventDescription = () => {
   useGetEventById(eventId);
 
   const event = useSelector((store) => store.event.selectedEvent);
-  
+
 
   const [open, setOpen] = useState(false);
 
@@ -48,18 +48,18 @@ const EventDescription = () => {
 
   const eventPassed = new Date(event?.date) < new Date();
 
-  const eventJoinHandler = async () =>{
+  const eventJoinHandler = async () => {
     try {
       setLoading(true);
-      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/v1/event/join/${event?._id}` , {} , {withCredentials: true});
+      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/v1/event/join/${event?._id}`, {}, { withCredentials: true });
 
-      if(res.data.success){
+      if (res.data.success) {
         toast.success(res.data.message);
         dispatch(setSelectedEvent(res.data.event));
       }
     } catch (error) {
       toast.error(error?.response?.data?.message || "Failed to join event. Please try again.");
-    }finally{
+    } finally {
       setLoading(false);
     }
   }
@@ -146,12 +146,12 @@ const EventDescription = () => {
 
               <div className="flex border-t py-2 w-full items-center justify-between">
                 <div className="flex flex-col items-center dark:text-gray-800">
-                 { event?.price > 0 ? (
-                  <>
-                    <h1 className="text-sm text-gray-600 font-serif">Starts from</h1>
-                  <span className="md:text-lg lg:text-xl font-bold">₹{event?.price}</span>
-                  </>
-                  ) : ( <h1 className="flex items-center gap-2 text-lg font-bold text-gray-800 font-serif"><FaMoneyBill className="w-5 h-5"/> Free</h1> )}
+                  {event?.price > 0 ? (
+                    <>
+                      <h1 className="text-sm text-gray-600 font-serif">Starts from</h1>
+                      <span className="md:text-lg lg:text-xl font-bold">₹{event?.price}</span>
+                    </>
+                  ) : (<h1 className="flex items-center gap-2 text-lg font-bold text-gray-800 font-serif"><FaMoneyBill className="w-5 h-5" /> Free</h1>)}
                 </div>
                 <div className="flex gap-2 mt-2">
                   {user ? (
@@ -174,7 +174,7 @@ const EventDescription = () => {
                           event?.price > 0 ? (
                             <Button
                               onClick={() => setBookDialogOpen(true)}
-                              className="bg-black text-white md:w-[80%] md:tracking-normal md:font-semibold lg:w-full font-serif font-bold tracking-wide"
+                              className="bg-black text-white text-sm sm:text-base md:w-[80%] md:tracking-normal md:font-semibold lg:w-full font-serif font-bold tracking-wide"
                               disabled={eventPassed}
                             >
                               BOOK NOW
@@ -183,9 +183,9 @@ const EventDescription = () => {
                             <Button
                               onClick={eventJoinHandler}
                               className="bg-black text-white md:w-[80%] md:tracking-normal md:font-semibold lg:w-full font-serif font-bold tracking-wide"
-                              disabled={eventPassed || (event?.attendees?.some((att)=> att._id === user?._id))}
+                              disabled={eventPassed || (event?.attendees?.some((att) => att._id === user?._id))}
                             >
-                              {loading ? (<Loader2 className="animate-spin mr-2 h-4 w-4"/>)  :  (event?.attendees?.some((att)=> att._id === user?._id) ? "Already Joined" : "JOIN NOW")}
+                              {loading ? (<Loader2 className="animate-spin mr-2 h-4 w-4" />) : (event?.attendees?.some((att) => att._id === user?._id) ? "Already Joined" : "JOIN NOW")}
                             </Button>
                           )
                         }
@@ -212,22 +212,26 @@ const EventDescription = () => {
 
           <div className="mt-6 space-y-4 px-2 md:px-8">
             <h3 className="text-2xl font-bold text-slate-800">Venue</h3>
-            <div className="px-8 py-4 border flex justify-between rounded-lg max-w-[80%]">
-              <h2 className="text-xl sm:text-2xl md:text-3xl text-gray-700 font-bold items-center">{event?.venue} {event?.location}</h2>
-              <button className={'bg-none px-4 py-2 rounded-lg flex gap-4 font-bold border border-gray-400 text-gray-600'}
+            <div className="px-4 sm:px-6 py-4 border flex flex-col sm:flex-row justify-between items-start sm:items-center rounded-lg w-full max-w-[80%] gap-3 sm:gap-0">
+              <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl text-gray-700 font-semibold break-words max-w-full">
+                {event?.venue}, {event?.location}
+              </h2>
+              <button
+                className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-1 sm:py-2 border border-gray-400 text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg font-semibold rounded-lg whitespace-nowrap"
                 onClick={() => {
                   const encodedLocation = encodeURIComponent(`${event?.venue} ${event?.location}`);
                   const mapsURL = `https://www.google.com/maps/dir/?api=1&destination=${encodedLocation}`;
                   window.open(mapsURL, '_blank');
                 }}
               >
-                <MapPin />
-                Get Direction</button>
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
+                Get Direction
+              </button>
             </div>
 
             <h3 className="text-2xl font-bold text-slate-800">Date & Time</h3>
             <div className="px-8 py-4 border rounded-lg max-w-[70%]">
-              <h2 className="text-xl sm:text-2xl md:text-3xl text-gray-700 font-bold items-center">{new Date(event?.date).toDateString()} | {event?.time}</h2>
+              <h2 className="text-sm sm:text-2xl md:text-3xl text-gray-700 font-bold items-center">{new Date(event?.date).toDateString()} | {event?.time}</h2>
             </div>
           </div>
 

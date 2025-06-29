@@ -67,7 +67,7 @@ const Events = () => {
         <div className='bg-gradient-to-b from-blue-100 to-white dark:bg-none h-[50vh]' />
         <div className="flex items-center justify-center -mt-70 pt-10 max-w-7xl mx-auto">
           {/* Search Bar */}
-          <div className="flex bg-white dark:bg-zinc-800 rounded-md overflow-hidden w-full max-w-xl shadow-lg">
+          <div className="flex bg-white dark:bg-zinc-800 rounded-md overflow-hidden w-full mx-4 max-w-xl shadow-lg">
             <input
               type="text"
               placeholder="Search by city, event name, or category"
@@ -86,7 +86,7 @@ const Events = () => {
                 setActiveCategory(activeCategory === name ? "" : name);
               }}
               key={name}
-              className={`px-4 py-2 rounded-full dark:{${darkbg}} ${bg} ${text} 
+              className={`px-4 py-2 rounded-full dark:{${darkbg}} ${bg} ${text} text-sm sm:text-md
                        ${activeCategory === name ? "ring-2 ring-zinc-700 dark:ring-3 dark:ring-white scale-105" : ""}
                        hover:scale-105 font-medium cursor-pointer hover:opacity-90 transition`}
             >
@@ -96,9 +96,9 @@ const Events = () => {
         </div>
 
 
-        <div className='max-w-7xl mx-auto py-5 flex flex-col space-y-12'>
+        <div className='max-w-7xl mx-auto px-2 py-5 flex flex-col space-y-12'>
           <div className='flex items-center gap-10'>
-            <h1 className='text-4xl font-bold'>
+            <h1 className='text-3xl  lg:text-4xl font-bold'>
               <span className='text-red-400 dark:text-red-500'>
                 {!activeCategory ? "Latest " : `Searched Result for:`}
               </span>{" "}
@@ -124,7 +124,7 @@ const Events = () => {
             });
 
             return (
-              <div key={type} className='border-t border-gray-800 dark:border-gray-700 pt-4'>
+              <div key={type} className='border-t border-gray-800 dark:border-gray-700 pt-1 sm:pt-2 md:pt-3 lg:pt-4'>
                 <h2 className="text-3xl font-semibold mb-4">
                   {type === 'Live' ? '🔴 Live Events' :
                     type === 'Upcoming' ? '🟢 Upcoming Events' :
