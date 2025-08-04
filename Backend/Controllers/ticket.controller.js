@@ -3,6 +3,7 @@ const Ticket = require("../models/ticket.model");
 const Event = require("../models/event.model");
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY); // env me rakho
 
+
 // 1. Create Payment Intent
 const createPaymentIntent = async (req, res) => {
     try {
