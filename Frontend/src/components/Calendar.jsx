@@ -248,7 +248,7 @@ const Calendar = () => {
         <div className="mt-8">
           {/* Heading */}
           <div className="flex items-center justify-between mb-4 px-1">
-            <h2 className="text-base font-bold text-white">
+            <h2 className="text-base font-bold text-black dark:text-white">
               {selectedDateLabel ? (
                 <>
                   Events on{" "}
@@ -337,7 +337,7 @@ const Calendar = () => {
                         <div className="flex items-center gap-1.5 bg-white/8 rounded-lg px-2.5 py-0.5">
                           <Ticket size={11} className={color.text} />
                           <span className="text-xs font-bold dark:text-white text-black">
-                            {event.price === 0 ? "Free" : `₹${event.price}`}
+                            {event.price === null ? "Free" : `₹${event.price}`}
                           </span>
                         </div>
 
