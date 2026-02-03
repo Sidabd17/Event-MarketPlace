@@ -1,4 +1,3 @@
-
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import {
   Popover,
@@ -7,7 +6,7 @@ import {
 } from "@/components/ui/popover";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
-import { LogOut, MapPin, User2 } from "lucide-react";
+import { LogOut, MapPin, Ticket, User2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/redux/authSlice";
 import axios from "axios";
@@ -32,6 +31,7 @@ const Navbar = ({setNavbarHeight}) => {
     "/movies": "movies",
     "/events": "events",
     "/my-bookings": "myBookings",
+    "/calendar": "calendar",                                                   // ← ADDED
     "/admin/dashboard": "dashboard",
     "/admin/events": "myEvents",
   };
@@ -43,6 +43,7 @@ const Navbar = ({setNavbarHeight}) => {
     movies: "bg-cyan-100 text-cyan-900 dark:bg-cyan-200 dark:text-cyan-900",
     events: "bg-blue-100 text-blue-900 dark:bg-blue-200 dark:text-blue-900",
     myBookings: "bg-yellow-50 text-yellow-900 dark:bg-yellow-100 dark:text-yellow-900",
+    calendar: "bg-green-100 text-green-900 dark:bg-green-200 dark:text-green-900",     // ← ADDED
     dashboard: "bg-violet-100 text-violet-900",
     myEvents: "bg-blue-100 text-blue-900",
   };
@@ -74,7 +75,7 @@ const Navbar = ({setNavbarHeight}) => {
 
   const renderNavLinks = () => {
     if (!user) {
-      return ["/", "/movies", "/events"].map((path) => (
+      return ["/", "/movies", "/events", "/calendar"].map((path) => (     // ← ADDED "/calendar"
         <span
           key={path}
           onClick={() => handleClick(path)}
@@ -98,7 +99,7 @@ const Navbar = ({setNavbarHeight}) => {
     }
 
     if (user.role === "attendee") {
-      return ["/", "/movies", "/events", "/my-bookings"].map((path) => (
+      return ["/", "/movies", "/events", "/calendar"].map((path) => (   // ← ADDED "/calendar"
         <span
           key={path}
           onClick={() => handleClick(path)}
@@ -157,7 +158,7 @@ const Navbar = ({setNavbarHeight}) => {
         </div>
 
         {/* Nav Links */}
-        <ul className="flex flex-wrap justify-center items-center gap-3 w-full md:w-auto ">
+        <ul className="flex flex-wrap text-sm justify-center items-center gap-2 w-full md:w-auto ">
           {renderNavLinks()}
         </ul>
 
@@ -217,6 +218,12 @@ const Navbar = ({setNavbarHeight}) => {
                     <LogOut className="dark:text-white" />
                     <Button onClick={logouthandler} variant="link">
                       Logout
+                    </Button>
+                  </div>
+                  <div className="flex items-center mt-2 gap-2">
+                    <Ticket className="dark:text-white" />
+                    <Button onClick={() => navigate("/my-bookings")} variant="link">
+                      View Bookings
                     </Button>
                   </div>
                 </div>

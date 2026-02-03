@@ -28,6 +28,7 @@ import { useSelector } from 'react-redux';
 import { connectSocket, getSocket } from './Socket';
 import useSocketListener from './hooks/useSocketListener';
 import { useFirebaseNotifications } from './hooks/useFirebaseNotifications';
+import CalendarPage from './pages/CalendarPage';
 
 const App = () => {
   const scrollRef = useRef();
@@ -99,6 +100,7 @@ const App = () => {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/ticket/:ticketId" element={<TicketDetails />} />
           <Route path="/saved-events" element={<SavedEvents />} />
+          <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/movie-checkout" element={<MovieCheckout />} />
           <Route path="/movie/description/:id" element={<MovieDescription />} />
