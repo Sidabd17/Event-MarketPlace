@@ -9,6 +9,6 @@ router.route("/login").post(login);
 router.route("/logout").get(logout);
 router.route("/profile/update").put(isAuthenticated, singleUpload, updateprofile);
 router.route("/profile/update/profilephoto").put(isAuthenticated, singleUpload, updateProfilephoto);
-router.route("/reset-password").post(resetPassword); // Assuming reset-password is handled in the login controller
+router.route("/reset-password").post(resetPassword); 
 
 module.exports = router;

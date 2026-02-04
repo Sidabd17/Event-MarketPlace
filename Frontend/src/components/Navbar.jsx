@@ -87,7 +87,7 @@ const Navbar = ({setNavbarHeight}) => {
     }
 
     if (user.role === "organizer") {
-      return ["/admin/dashboard", "/admin/events"].map((path) => (
+      return ["/admin/dashboard", "/admin/events" , "/calendar"].map((path) => (
         <span
           key={path}
           onClick={() => handleClick(path)}
@@ -201,12 +201,12 @@ const Navbar = ({setNavbarHeight}) => {
                     <AvatarImage src={user?.profile?.profilePhoto || "https://github.com/shadcn.png"} alt="user avatar" />
                   </Avatar>
                   <div className="flex flex-col">
-                    <h4 className="font-bold">{user.name}</h4>
+                    <h4 className="font-bold">{user?.name}</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">{user?.email}</p>
                   </div>
                 </div>
                 <div className="flex flex-col mt-2 items-start text-gray-900">
-                  {user.role === "attendee" && (
+                  {user?.role === "attendee" && (
                     <div className="flex items-center gap-2">
                       <User2 className="dark:text-white" />
                       <Button variant="link">
@@ -220,12 +220,14 @@ const Navbar = ({setNavbarHeight}) => {
                       Logout
                     </Button>
                   </div>
-                  <div className="flex items-center mt-2 gap-2">
+                 {user?.role === "attendee" && (
+                   <div className="flex items-center mt-2 gap-2">
                     <Ticket className="dark:text-white" />
                     <Button onClick={() => navigate("/my-bookings")} variant="link">
                       View Bookings
                     </Button>
                   </div>
+                 )} 
                 </div>
               </PopoverContent>
             </Popover>
