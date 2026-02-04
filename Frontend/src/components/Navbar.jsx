@@ -87,7 +87,7 @@ const Navbar = ({setNavbarHeight}) => {
     }
 
     if (user.role === "organizer") {
-      return ["/admin/dashboard", "/admin/events" , "/calendar"].map((path) => (
+      return ["/admin/dashboard", "/admin/events"].map((path) => (
         <span
           key={path}
           onClick={() => handleClick(path)}
